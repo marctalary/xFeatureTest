@@ -1,4 +1,6 @@
-﻿namespace XFeatureTest.Features
+﻿using XFeatureTest.TextOutput;
+
+namespace XFeatureTest.Features
 {
     public abstract class FeatureGivenWhenThen
     {

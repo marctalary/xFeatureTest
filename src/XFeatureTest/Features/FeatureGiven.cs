@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using XFeatureTest.TextOutput;
 
 namespace XFeatureTest.Features
 {

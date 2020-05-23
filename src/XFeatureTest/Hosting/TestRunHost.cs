@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using XFeatureTest.Features;
+using XFeatureTest.TextOutput;
 
 namespace XFeatureTest.Hosting
 {
