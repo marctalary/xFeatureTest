@@ -3,10 +3,17 @@ using XFeatureTest.TextOutput;
 
 namespace XFeatureTest.Features
 {
-    public abstract class FeatureThen : FeatureGivenWhenThen
+    public abstract class FeatureThen<TGiven, TWhen> : FeatureGivenWhenThen
+        where TGiven : FeatureGiven
+        where TWhen : FeatureWhen<TGiven>
     {
-        protected FeatureThen(ScenarioOutput output) : base(output)
+        public TGiven Given { get; }
+        public TWhen When { get; }
+
+        protected FeatureThen(ScenarioOutput output, TGiven given, TWhen when) : base(output)
         {
+            Given = given;
+            When = when;
         }
 
         public void OutputScenarioText([CallerMemberName] string assertionDescription = null)

@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XFeatureTest", "XFeatureTest.csproj", "{81BC18BB-EF54-479E-BFEF-837DF5FC6E45}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Firefly.MIF.Api.AutomatedTests", "..\Firefly.MIF.Api.AutomatedTests\Firefly.MIF.Api.AutomatedTests.csproj", "{0D057A05-C6AD-4392-8817-D8FD4EBDA9EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleTestProject", "..\ExampleTestProject\ExampleTestProject.csproj", "{8190F944-7062-49D4-AD25-9B509B79DCAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{81BC18BB-EF54-479E-BFEF-837DF5FC6E45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81BC18BB-EF54-479E-BFEF-837DF5FC6E45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81BC18BB-EF54-479E-BFEF-837DF5FC6E45}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0D057A05-C6AD-4392-8817-D8FD4EBDA9EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D057A05-C6AD-4392-8817-D8FD4EBDA9EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0D057A05-C6AD-4392-8817-D8FD4EBDA9EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0D057A05-C6AD-4392-8817-D8FD4EBDA9EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8190F944-7062-49D4-AD25-9B509B79DCAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8190F944-7062-49D4-AD25-9B509B79DCAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8190F944-7062-49D4-AD25-9B509B79DCAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8190F944-7062-49D4-AD25-9B509B79DCAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

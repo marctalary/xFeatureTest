@@ -8,8 +8,8 @@ namespace XFeatureTest.Features
 {
     public abstract class Feature<TGiven, TWhen, TThen> : IDisposable
         where TGiven : FeatureGiven
-        where TWhen : FeatureWhen
-        where TThen : FeatureThen
+        where TWhen : FeatureWhen<TGiven>
+        where TThen : FeatureThen<TGiven,TWhen>
     {
         private readonly ScenarioContext<TGiven, TWhen, TThen> _scenarioContext;
         private readonly IServiceScope _scenarioServicesScope;
