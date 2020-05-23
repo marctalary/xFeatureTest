@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
-using XFeatureTest.Features;
 using XFeatureTest.TextOutput;
 
 namespace XFeatureTest.Hosting
@@ -41,6 +41,7 @@ namespace XFeatureTest.Hosting
         {
             services.AddScoped<TestContext>();
             services.AddScoped<ScenarioOutput>();
+            services.TryAddSingleton(ScenarioOutputOptionsFactory.DefaultOptions);
         }
     }
 }

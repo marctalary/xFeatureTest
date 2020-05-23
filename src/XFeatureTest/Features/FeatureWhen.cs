@@ -9,10 +9,14 @@ namespace XFeatureTest.Features
         {
         }
 
-        public void OutputScenarioText([CallerMemberName] string actionDescription = null) =>
+        public void OutputScenarioText([CallerMemberName] string actionDescription = null)
+        {
             Output.When(actionDescription);
+        }
 
-        public void OutputScenarioCleanupText([CallerMemberName] string cleanupDescription = null) =>
+        public void OutputScenarioCleanupText([CallerMemberName] string cleanupDescription = null)
+        {
             Output.Cleanup(cleanupDescription);
+        }
     }
 }

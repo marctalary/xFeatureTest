@@ -12,13 +12,13 @@ namespace XFeatureTest.TextOutput
     public class ScenarioOutput
     {
         private readonly List<string> _displayedPrefixes = new List<string>();
-        private readonly TestContext _testContext;
         private readonly ScenarioOutputOptions _outputOptions;
+        private readonly TestContext _testContext;
 
-        public ScenarioOutput(TestContext testContext)
+        public ScenarioOutput(TestContext testContext, ScenarioOutputOptions outputOptions)
         {
             _testContext = testContext;
-            _outputOptions = ScenarioOutputOptions.DefaultOptions;
+            _outputOptions = outputOptions;
         }
 
         private ITestOutputHelper Output => _testContext.Output;
@@ -72,21 +72,21 @@ namespace XFeatureTest.TextOutput
                 prefix = statementOptions.Prefix;
             }
             else
+            {
                 prefix = statementOptions.PrefixAfterFirstOccurence;
+            }
 
             if (outputOptions.PrefixStatementsWithDate)
                 sb.Append(DateTime.Now.ToString(outputOptions.PrefixStatementsWithDateTimeFormat)).Append(" ");
 
             if (statementOptions.IndentWithOtherStatements)
-            {
                 prefix = firstOccurence
-                    ? prefix.PadRight(outputOptions.MaxPrefixLength) 
+                    ? prefix.PadRight(outputOptions.MaxPrefixLength)
                     : prefix.PadLeft(outputOptions.MaxPrefixLength);
-            }
 
             sb.Append(prefix)
-              .Append(" ")
-              .Append(ApplyTextFormatters(text, outputOptions.TextFormatters));
+                .Append(" ")
+                .Append(ApplyTextFormatters(text, outputOptions.TextFormatters));
 
             return sb.ToString();
         }

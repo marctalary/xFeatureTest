@@ -48,6 +48,8 @@ namespace XFeatureTest.Features
         }
 
         protected TService GetService<TService>()
-            => _scenarioServicesScope.ServiceProvider.GetService<TService>();
+        {
+            return _scenarioServicesScope.ServiceProvider.GetService<TService>();
+        }
     }
 }

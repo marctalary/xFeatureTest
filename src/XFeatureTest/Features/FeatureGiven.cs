@@ -9,7 +9,9 @@ namespace XFeatureTest.Features
         {
         }
 
-        public void OutputScenarioText([CallerMemberName] string preconditionDescription = null) =>
+        public void OutputScenarioText([CallerMemberName] string preconditionDescription = null)
+        {
             Output.Given(preconditionDescription);
+        }
     }
 }

@@ -2,7 +2,8 @@
 
 namespace XFeatureTest.TextFormatters
 {
-    public class CamelCaseFormatter : TextFormatter {
+    public class CamelCaseFormatter : TextFormatter
+    {
         public override string Format(string text)
         {
             var sb = new StringBuilder();

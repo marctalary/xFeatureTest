@@ -9,7 +9,9 @@ namespace XFeatureTest.Features
         {
         }
 
-        public void OutputScenarioText([CallerMemberName] string assertionDescription = null) =>
+        public void OutputScenarioText([CallerMemberName] string assertionDescription = null)
+        {
             Output.Then(assertionDescription);
+        }
     }
 }

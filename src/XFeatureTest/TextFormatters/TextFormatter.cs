@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace XFeatureTest.TextFormatters
+﻿namespace XFeatureTest.TextFormatters
 {
     public abstract class TextFormatter
     {
