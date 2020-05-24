@@ -1,8 +1,7 @@
-using ExampleTestProject.ExampleSut;
 using XFeatureTest.Features;
 using XFeatureTest.TextOutput;
 
-namespace ExampleTestProject.ExampleFeatures.BasicExampleFeature
+namespace ExampleTestProject.BasicExample.Features.BasicExampleFeature
 {
     public class BasicExampleFeatureGiven : FeatureGiven
     {

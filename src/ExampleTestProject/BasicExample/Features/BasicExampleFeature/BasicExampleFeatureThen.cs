@@ -2,7 +2,7 @@ using XFeatureTest.Features;
 using XFeatureTest.TextOutput;
 using Xunit;
 
-namespace ExampleTestProject.ExampleFeatures.BasicExampleFeature
+namespace ExampleTestProject.BasicExample.Features.BasicExampleFeature
 {
     public class BasicExampleFeatureThen : FeatureThen<BasicExampleFeatureGiven, BasicExampleFeatureWhen>
     {
