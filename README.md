@@ -1,5 +1,6 @@
 # xFeatureTest
 Test Framework on-top of xunit providing enforced structure for gherkin style tests.
+
 [![NuGet version](https://img.shields.io/nuget/vpre/XFeatureTest.svg)](https://www.nuget.org/packages/XFeatureTest)
 
 A Feature (test class) contains Scenarios (test methods) and they have simple steps which call methods on a  corresponding Given, When and Then class.  
@@ -22,7 +23,7 @@ public class BasicExampleFeature
     }
 }
 ```
-A more application familiar version of Dependency is implemented for this framework by using `Host.CreateDefaultBuilder()` (you can also pass in your own `IHostBuilder`).  This means that there is automatically support for `appsettings.json` and other standard utilities.  
+A more familiar approach to Dependency Injection is implemented for this framework by using `Host.CreateDefaultBuilder()` (you can also pass in your own `IHostBuilder`).  This means that there is automatically support for `appsettings.json` and other standard utilities.  
 
 ## Getting Started
 1. Install the standard Nuget package into your xunit test project.
