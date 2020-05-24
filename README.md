@@ -156,7 +156,7 @@ public void ConfigureServices(HostBuilderContext context, IServiceCollection ser
 
 As per standard xunit approach, test initialisation and cleanup for each scenario/test can be added as follows:
 
-- put initalisation code in the class contractor 
+- put initalisation code in the class constructor
 
 - implment the `IDisposable` interface in your feature/test class and put the cleanup code in the `Dispose()` method
 
