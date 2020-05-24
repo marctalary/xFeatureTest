@@ -1,5 +1,5 @@
 ﻿using ExampleTestProject;
-using ExampleTestProject.ExampleFeatures.BasicExampleFeature;
+using ExampleTestProject.BasicExample.Features.BasicExampleFeature;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using XFeatureTest.Hosting;

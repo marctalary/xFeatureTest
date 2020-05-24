@@ -2,7 +2,7 @@ using XFeatureTest.Features;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace ExampleTestProject.ExampleFeatures.BasicExampleFeature
+namespace ExampleTestProject.BasicExample.Features.BasicExampleFeature
 {
     public class BasicExampleFeature
         : Feature<BasicExampleFeatureGiven, BasicExampleFeatureWhen, BasicExampleFeatureThen>

@@ -1,7 +1,7 @@
 using XFeatureTest.Features;
 using XFeatureTest.TextOutput;
 
-namespace ExampleTestProject.ExampleFeatures.BasicExampleFeature
+namespace ExampleTestProject.BasicExample.Features.BasicExampleFeature
 {
     public class BasicExampleFeatureWhen : FeatureWhen<BasicExampleFeatureGiven>
     {

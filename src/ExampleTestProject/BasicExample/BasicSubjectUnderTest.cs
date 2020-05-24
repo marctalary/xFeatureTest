@@ -1,4 +1,4 @@
-﻿namespace ExampleTestProject.ExampleSut
+﻿namespace ExampleTestProject.BasicExample
 {
     public class BasicSubjectUnderTest
     {
