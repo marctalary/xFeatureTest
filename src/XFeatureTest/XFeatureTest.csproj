@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>XFeatureTest</PackageId>
+    <Authors>Marc Talary</Authors>
+    <Company>talary.co.uk</Company>
+    <Description>Test framework for enforcing the given, when, then style and seperation. Enables a more app style dependency injection</Description>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IsPackable>true</IsPackable>
+    <RepositoryUrl>https://github.com/marctalary/xFeatureTest</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,6 +17,13 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="xunit" Version="2.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
