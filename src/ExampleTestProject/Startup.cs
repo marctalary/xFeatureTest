@@ -1,4 +1,8 @@
-﻿using ExampleTestProject;
+﻿using AutoFixture;
+using ExampleAspNetProject.Services;
+using ExampleTestProject;
+using ExampleTestProject.AspNetCoreExample.Features.Values;
+using ExampleTestProject.AspNetCoreExample.Fixtures;
 using ExampleTestProject.BasicExample.Features.BasicExampleFeature;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,6 +32,13 @@ namespace ExampleTestProject
         public void ConfigureServices(HostBuilderContext context, IServiceCollection services)
         {
             BasicExampleFeature.RegisterServices(services);
+            ValuesFeature.RegisterServices(services);
+
+            services.AddSingleton<IFixture, Fixture>();
+
+            services.AddSingleton<IApiClientFixture, ApiClientFixture>();
+            services.AddSingleton<ValuesApiFixture>();
+            services.AddSingleton<IValuesDataService, ValuesDataServiceFixture>();
         }
     }
 }

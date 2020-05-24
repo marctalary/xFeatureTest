@@ -11,6 +11,7 @@ namespace ExampleAspNetProject.Services
         ValueModel Read(int id);
         void Update(int id, string value);
         void Delete(int id);
+        void Delete();
         ValueModel Create(string value);
     }
 
@@ -50,6 +51,11 @@ namespace ExampleAspNetProject.Services
         public void Delete(int id)
         {
             DataSource.Remove(id);
+        }
+
+        public void Delete()
+        {
+            DataSource.Clear();
         }
 
         public ValueModel Create(string value)

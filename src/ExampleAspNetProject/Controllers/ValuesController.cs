@@ -51,5 +51,12 @@ namespace ExampleAspNetProject.Controllers
         {
             _valuesDataService.Delete(id);
         }
+
+        // DELETE api/values
+        [HttpDelete]
+        public void Delete()
+        {
+            _valuesDataService.Delete();
+        }
     }
 }
