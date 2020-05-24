@@ -1,5 +1,6 @@
 # xFeatureTest
 Test Framework on-top of xunit providing enforced structure for gherkin style tests.
+[![NuGet version](https://img.shields.io/nuget/vpre/XFeatureTest.svg)](https://www.nuget.org/packages/XFeatureTest)
 
 A Feature (test class) contains Scenarios (test methods) and they have simple steps which call methods on a  corresponding Given, When and Then class.  
 
@@ -21,8 +22,7 @@ public class BasicExampleFeature
     }
 }
 ```
-
-[![NuGet version](https://img.shields.io/nuget/vpre/XFeatureTest.svg)](https://www.nuget.org/packages/XFeatureTest)
+A more application familiar version of Dependency is implemented for this framework by using `Host.CreateDefaultBuilder()` (you can also pass in your own `IHostBuilder`).  This means that there is automatically support for `appsettings.json` and other standard utilities.  
 
 ## Getting Started
 1. Install the standard Nuget package into your xunit test project.
@@ -85,7 +85,7 @@ public class ExampleGiven : FeatureGiven
 }
 ```
 
-Actions should be carried out and the outcomes captured in the `When` class.  The actions should use use preconditions from the `Given` class. 
+Actions should be carried out and the outcomes captured in the `When` class.  The actions should use preconditions from the `Given` class. 
 
 ```c#
 public class ExampleWhen : FeatureWhen<ExampleGiven>
@@ -105,7 +105,7 @@ public class ExampleThen : FeatureThen<ExampleGiven, ExampleWhen>
 }
 ```
 
-Any registered services can be injected into the the given when or then classes.
+Any registered services can be injected into the given when or then classes.
 
 4. Register your feature and it's `Given`, `When`, `Then` class using the `Feature` class `RegisterServices` method.
 
@@ -160,9 +160,10 @@ As per standard xunit approach, test initialisation and cleanup for each scenari
 
 - implment the `IDisposable` interface in your feature/test class and put the cleanup code in the `Dispose()` method
 
-  For asynchronous initialisation and cleanup implement `IAsyncLifetime` in your feature/test class then:
+For asynchronous initialisation and cleanup implement `IAsyncLifetime` in your feature/test class then:
 
 - put initalisation code in the `InitializeAsync()` method 
 - put the cleanup code in the `DisposeAsync()` method
 
-`InitializeAsync` will be called right after the constructor is invoked, and `DisposeAsync` just before `Dispose` - if it exists - is called.
+`InitializeAsync` will be called right after the constructor is invoked, and `DisposeAsync` just before `Dispose`, if it exists, is called.
+
