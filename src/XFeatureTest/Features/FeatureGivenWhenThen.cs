@@ -1,4 +1,5 @@
-﻿using XFeatureTest.TextOutput;
+﻿using System.Runtime.CompilerServices;
+using XFeatureTest.TextOutput;
 
 namespace XFeatureTest.Features
 {
@@ -10,5 +11,10 @@ namespace XFeatureTest.Features
         }
 
         protected ScenarioOutput Output { get; }
+
+        public void OutputScenarioCleanupText([CallerMemberName] string cleanupDescription = null)
+        {
+            Output.Cleanup(cleanupDescription);
+        }
     }
 }

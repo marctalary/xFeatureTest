@@ -1,11 +1,33 @@
 # xFeatureTest
 Test Framework on-top of xunit providing enforced structure for gherkin style tests.
 
+A Feature (test class) contains Scenarios (test methods) and they have simple steps which call methods on a  corresponding Given, When and Then class.  
+
+A scenario looks something like this:
+
+```c#
+public class BasicExampleFeature
+ : Feature<BasicExampleFeatureGiven, BasicExampleFeatureWhen, BasicExampleFeatureThen>
+{
+    [Fact]
+    public void IGetFullNameFromNames()
+    {
+        OutputScenarioText();
+
+        Given.AFirstName();
+        Given.ALastName();
+        When.IGetFullName();
+        Then.FullNameIsFirstNamePlusLastName();
+    }
+}
+```
+
 [![NuGet version](https://img.shields.io/nuget/vpre/XFeatureTest.svg)](https://www.nuget.org/packages/XFeatureTest)
 
-##Getting Started
+## Getting Started
 1. Install the standard Nuget package into your xunit test project.
-2. Create a class in your xunit test project to configure the test run host by adding your services which will then be injected into your Given, When, Then classes. 
+`Install-Package XFeatureTest`
+2. Create a class in your xunit test project to configure the test run host, add any services to be injected into your Given, When, Then classes. 
 
 ```c#
 using XFeatureTest.Hosting;
@@ -104,6 +126,31 @@ public void ConfigureServices(HostBuilderContext context, IServiceCollection ser
 ## Scenario Text Output
 
 Given, When, Then, Feature, Scenario and Cleanup descriptions can be added to the test output.  In the `Feature` class scenario/test methods, Given, When or Then methods simply add `OutputScenarioText();` and the name of the current method will be output, formatted as a sentence or you can provide your own text.
+
+Example output:
+
+```
+12:42:41 FEATURE basic example feature
+12:42:41 SCENARIO i get full name from names
+----------------
+12:42:41 GIVEN a first name
+12:42:41   AND a last name
+12:42:41 WHEN  i get full name
+12:42:41 THEN  full name is first name plus last name
+----------------
+12:42:41 CLEANUP cleaning up name data.
+```
+
+The output can be customised by adding a service providing `ScenarioOutputOptions` e.g.
+
+```c#
+public void ConfigureServices(HostBuilderContext context, IServiceCollection services)
+{
+  ScenarioOutputOptions options = ScenarioOutputOptionsFactory.DefaultOptions;
+  services.AddSingleton(options);
+  ExampleFeature.RegisterServices(services);
+}
+```
 
 ## Test Initialisation and Cleanup
 

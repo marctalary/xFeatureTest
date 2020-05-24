@@ -17,10 +17,5 @@ namespace XFeatureTest.Features
         {
             Output.When(actionDescription);
         }
-
-        public void OutputScenarioCleanupText([CallerMemberName] string cleanupDescription = null)
-        {
-            Output.Cleanup(cleanupDescription);
-        }
     }
 }

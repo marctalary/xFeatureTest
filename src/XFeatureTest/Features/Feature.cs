@@ -29,7 +29,7 @@ namespace XFeatureTest.Features
         protected TWhen When => _scenarioContext.When;
         protected TThen Then => _scenarioContext.Then;
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             _scenarioServicesScope.Dispose();
         }
