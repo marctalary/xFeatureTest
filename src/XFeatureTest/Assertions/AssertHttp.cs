@@ -13,7 +13,7 @@ namespace XFeatureTest.Assertions
         /// </summary>
         /// <param name="expected"></param>
         /// <param name="actualResponse"></param>
-        /// <returns></returns>
+        /// <returns>HttpResponse to which was asserted against</returns>
         public static async Task<HttpResponseMessage> StatusCode(HttpStatusCode expected,
             HttpResponseMessage actualResponse)
         {
@@ -27,7 +27,6 @@ namespace XFeatureTest.Assertions
         public static void StatusCode(HttpStatusCode expected, HttpStatusCode actual)
         {
             if (actual != expected)
-                //    throw new TestAssertActualExpectedException(expected, actual, "TestUserMessage");
                 throw new HttpStatusException(expected, actual);
         }
 
@@ -37,7 +36,8 @@ namespace XFeatureTest.Assertions
 
             try
             {
-                responseData = await response.Content.ReadAsStringAsync();
+                if (response.Content != null)
+                    responseData = await response.Content.ReadAsStringAsync();
             }
             catch (Exception)
             {
@@ -52,7 +52,7 @@ namespace XFeatureTest.Assertions
             private readonly string _responseContent;
 
             public HttpStatusException(HttpStatusCode expected, HttpStatusCode actual, string responseContent = null)
-                : base($"{(int)expected} {expected}", $"{(int)actual} {actual}", "AssertHttp.StatusCode Failure",
+                : base($"{(int)expected} {expected}", $"{(int)actual} {actual}", $"{nameof(AssertHttp)}.{nameof(StatusCode)} Failure",
                     "Expected HTTP", "Actual HTTP")
             {
                 _responseContent = responseContent;

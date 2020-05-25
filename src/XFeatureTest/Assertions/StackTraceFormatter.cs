@@ -7,7 +7,7 @@ namespace XFeatureTest.Assertions
     {
         public static string RemoveAssertionTraces(string stackTrace)
         {
-            // Remove any entries in the stack trace from the current names
+            // Remove any entries in the stack trace from the current namespace
             var traces = new List<string>();
             traces.AddRange(stackTrace.Split(new[]
             {
