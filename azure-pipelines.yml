@@ -25,7 +25,7 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
-    packDirectory: '$(Build.ArtifactStagingDirectory)'
+#    packDirectory: '$(Build.ArtifactStagingDirectory)'
     includesymbols: true
     includesource: true
     versioningScheme: 'byEnvVar'
