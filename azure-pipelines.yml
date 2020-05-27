@@ -20,17 +20,22 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
-
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '**\*.sln'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    projects: '**\*ExampleTestProject.csproj'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'pack'
-    packagesToPack: '**/*.csproj'
-    packDirectory: '$(Build.ArtifactStagingDirectory)'
+    packagesToPack: '**/XFeatureTest.csproj'
+    nobuild: true
     includesymbols: true
     includesource: true
     versioningScheme: 'byEnvVar'
-    versionEnvVar: 'PackageVersion'
-
 - task: DotNetCoreCLI@2
   inputs:
     command: 'push'
