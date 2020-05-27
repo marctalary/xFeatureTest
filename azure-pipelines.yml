@@ -35,12 +35,10 @@ steps:
   displayName: 'dotnet pack'
   inputs:
     command: 'pack'
-    packagesToPack: '**/XFeatureTest.csproj'
-    nobuild: true
+    packagesToPack: 'src\XFeatureTest\XFeatureTest.csproj'
     includesymbols: true
     includesource: true
     versioningScheme: 'byEnvVar'
-
 - task: DotNetCoreCLI@2
   displayName: 'dotnet push nuget.org'
   inputs:
