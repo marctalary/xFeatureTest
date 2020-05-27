@@ -25,6 +25,7 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
+    packDirectory: '$(Build.ArtifactStagingDirectory)'
     includesymbols: true
     includesource: true
     versioningScheme: 'byEnvVar'
@@ -35,3 +36,4 @@ steps:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
     nuGetFeedType: 'external'
+
