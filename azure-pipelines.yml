@@ -18,17 +18,21 @@ steps:
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
+  displayName: 'nuget restore solution'
   inputs:
     restoreSolution: '$(solution)'
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
   inputs:
     command: 'build'
     projects: '**\*.sln'
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet test'
   inputs:
     command: 'test'
     projects: '**\*ExampleTestProject.csproj'
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet pack'
   inputs:
     command: 'pack'
     packagesToPack: '**/XFeatureTest.csproj'
@@ -36,7 +40,9 @@ steps:
     includesymbols: true
     includesource: true
     versioningScheme: 'byEnvVar'
+
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet push nuget.org'
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
