@@ -31,14 +31,25 @@ steps:
   inputs:
     command: 'test'
     projects: '$(Build.SourcesDirectory)\src\ExampleAspNetProject\ExampleTestProject.csproj'
+#- task: DotNetCoreCLI@2
+#  displayName: 'dotnet pack'
+#  inputs:
+#    command: 'pack'
+#    packagesToPack: '
+#    includesymbols: true
+#    includesource: true
+#    versioningScheme: 'byEnvVar'
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet pack'
+  displayName: 'packv2'
   inputs:
     command: 'pack'
     packagesToPack: '$(Build.SourcesDirectory)\src\XFeatureTest\XFeatureTest.csproj'
+    configuration: '$(BuildConfiguration)'
+    packDirectory: '$(Build.ArtifactStagingDirectory)'
     includesymbols: true
     includesource: true
-#    versioningScheme: 'byEnvVar'
+    versioningScheme: 'off'
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
   inputs:
