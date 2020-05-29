@@ -47,11 +47,24 @@ steps:
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'PackageVersion'
 
+- task: NuGetAuthenticate@0
+  inputs:
+    nuGetServiceConnections: 'Public Nuget Feed'
+
+#- task: DotNetCoreCLI@2
+#  displayName: Push Nuget Package
+#  inputs:
+#    command: custom
+#    custom: nuget
+#    arguments: >
+#      push $(Build.ArtifactStagingDirectory)/*.nupkg
+#      -s $(NuGetSourceServerUrl)
+#      -k $(NuGetSourceServerApiKey)
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet push nuget.org'
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
-    nuGetFeedType: 'external'
-    publishFeedCredentials: 'Public Nuget Feed'
-
+#    nuGetFeedType: 'external'
+#    publishFeedCredentials: 'Public Nuget Feed'
