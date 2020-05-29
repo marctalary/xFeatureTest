@@ -38,7 +38,6 @@ steps:
 #    packagesToPack: '
 #    includesymbols: true
 #    includesource: true
-#    versioningScheme: 'byEnvVar'
 - task: DotNetCoreCLI@2
   displayName: 'packv2'
   inputs:
@@ -48,7 +47,7 @@ steps:
     packDirectory: '$(Build.ArtifactStagingDirectory)'
     includesymbols: true
     includesource: true
-    versioningScheme: 'off'
+    versioningScheme: 'byEnvVar'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
