@@ -56,16 +56,16 @@ steps:
   inputs:
     command: 'custom'
     projects: '$(Build.ArtifactStagingDirectory)\XFeatureTest.$(PackageVersion).nupkg'
-    custom: 'nuget push'
-    arguments: '-k oy2mqnpl4vg77fbmybia5bgrxoc7ud6eznjpc2lmg3lmwa -s https://api.nuget.org/v3/index.json'
+    custom: 'nuget'
+    arguments: 'push -k oy2mqnpl4vg77fbmybia5bgrxoc7ud6eznjpc2lmg3lmwa -s https://api.nuget.org/v3/index.json'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet nuget push nuget.org symbols'
   inputs:
     command: 'custom'
     projects: '$(Build.ArtifactStagingDirectory)\XFeatureTest.$(PackageVersion).symbols.snupkg'
-    custom: 'nuget push'
-    arguments: '-k oy2mqnpl4vg77fbmybia5bgrxoc7ud6eznjpc2lmg3lmwa -s https://api.nuget.org/v3/index.json'
+    custom: 'nuget'
+    arguments: 'push -k oy2mqnpl4vg77fbmybia5bgrxoc7ud6eznjpc2lmg3lmwa -s https://api.nuget.org/v3/index.json'
 
 #- task: PublishBuildArtifacts@1
 #  inputs:
