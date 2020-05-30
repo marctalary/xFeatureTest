@@ -77,7 +77,7 @@ steps:
 #  displayName: 'dotnet nuget push nuget.org symbols'
 #  inputs:
 #    command: 'custom'
-#    projects: '$(Build.ArtifactStagingDirectory)\XFeatureTest.$(PackageVersion).symbols.snupkg'
+#    projects: '
 #    custom: 'nuget'
 #    arguments: 'push -k oy2mqnpl4vg77fbmybia5bgrxoc7ud6eznjpc2lmg3lmwa -s https://api.nuget.org/v3/index.json'
 
@@ -86,4 +86,14 @@ steps:
 #    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
 #    ArtifactName: 'nuget'
 #    publishLocation: 'Container'
+- task: CmdLine@2
+  displayName: 'dotnet nuget push nuget.org'
+  inputs:
+    script: 'dotnet nuget push XFeatureTest.$(PackageVersion).symbols.nupkg -k $(ApiKey) -s https://api.nuget.org/v3/index.json'
+    workingDirectory: '$(Build.ArtifactStagingDirectory)'
 
+- task: CmdLine@2
+  displayName: 'dotnet nuget push nuget.org symbols'
+  inputs:
+    script: 'dotnet nuget push XFeatureTest.$(PackageVersion).symbols.snupkg -k $(ApiKey) -s https://api.nuget.org/v3/index.json'
+    workingDirectory: '$(Build.ArtifactStagingDirectory)'
