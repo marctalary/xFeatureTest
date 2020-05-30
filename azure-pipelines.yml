@@ -56,7 +56,7 @@ steps:
   inputs:
     command: 'custom'
     projects: '$(Build.ArtifactStagingDirectory)\XFeatureTest.$(PackageVersion).nupkg'
-    custom: 'push'
+    custom: 'nuget push'
     arguments: '-k oy2mqnpl4vg77fbmybia5bgrxoc7ud6eznjpc2lmg3lmwa -s https://api.nuget.org/v3/index.json'
 
 - task: DotNetCoreCLI@2
