@@ -21,45 +21,54 @@ steps:
   displayName: 'nuget restore solution'
   inputs:
     restoreSolution: '$(solution)'
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet build'
-  inputs:
-    command: 'build'
-    projects: '$(solution)'
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet test'
-  inputs:
-    command: 'test'
-    projects: '$(Build.SourcesDirectory)\src\ExampleAspNetProject\ExampleTestProject.csproj'
-#- task: DotNetCoreCLI@2
-#  displayName: 'dotnet pack'
-#  inputs:
-#    command: 'pack'
-#    packagesToPack: '
-#    includesymbols: true
-#    includesource: true
-#    versioningScheme: 'byEnvVar'
-- task: DotNetCoreCLI@2
-  displayName: 'packv2'
-  inputs:
-    command: 'pack'
-    packagesToPack: '$(Build.SourcesDirectory)\src\XFeatureTest\XFeatureTest.csproj'
-    configuration: '$(BuildConfiguration)'
-    packDirectory: '$(Build.ArtifactStagingDirectory)'
-    includesymbols: true
-    includesource: true
-    versioningScheme: 'off'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
   inputs:
     command: 'build'
     projects: '$(solution)'
-    arguments: '-c $(buildConfiguration) -o (Build.ArtifactStagingDirectory)'
+    arguments: '-c $(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet test'
+  inputs:
+    command: 'test'
+    projects: '$(Build.SourcesDirectory)/src/ExampleTestProject/ExampleTestProject.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet pack'
+  inputs:
+    command: 'pack'
+    packagesToPack: '$(Build.SourcesDirectory)/src/XFeatureTest/XFeatureTest.csproj'
+    configuration: '$(BuildConfiguration)'
+    packDirectory: '$(Build.ArtifactStagingDirectory)'
+    versioningScheme: 'byEnvVar'
+    versionEnvVar: 'PackageVersion'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'nuget'
+    publishLocation: 'Container'
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet push nuget.org'
   inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
-    nuGetFeedType: 'external'
-    publishFeedCredentials: 'Public Nuget Feed'
+    command: 'custom'
+    projects: '$(Build.ArtifactStagingDirectory)\**\XFeatureTest.$(PackageVersion).nupkg'
+    custom: 'push'
+    arguments: '-k oy2mqnpl4vg77fbmybia5bgrxoc7ud6eznjpc2lmg3lmwa -s https://api.nuget.org/v3/index.json'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet push nuget.org symbols'
+  inputs:
+    command: 'custom'
+    projects: '$(Build.ArtifactStagingDirectory)\**\XFeatureTest.$(PackageVersion).symbols.nupkg'
+    custom: 'push'
+    arguments: '-k oy2mqnpl4vg77fbmybia5bgrxoc7ud6eznjpc2lmg3lmwa -s https://api.nuget.org/v3/index.json'
+
+#- task: PublishBuildArtifacts@1
+#  inputs:
+#    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+#    ArtifactName: 'nuget'
+#    publishLocation: 'Container'
