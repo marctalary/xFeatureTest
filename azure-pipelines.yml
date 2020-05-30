@@ -42,13 +42,27 @@ steps:
     packagesToPack: '$(Build.SourcesDirectory)/src/XFeatureTest/XFeatureTest.csproj'
     configuration: '$(BuildConfiguration)'
     packDirectory: '$(Build.ArtifactStagingDirectory)'
-    includesymbols: true
-    includesource: true
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'PackageVersion'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet push nuget.org'
   inputs:
-    command: 'push  -k oy2mqnpl4vg77fbmybia5bgrxoc7ud6eznjpc2lmg3lmwa -s https://api.nuget.org/v3/index.json'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
+    command: 'custom'
+    projects: '$(Build.ArtifactStagingDirectory)/XFeatureTest.$(PackageVersion).nupkg'
+    custom: 'push'
+    arguments: '-k oy2mqnpl4vg77fbmybia5bgrxoc7ud6eznjpc2lmg3lmwa -s https://api.nuget.org/v3/index.json'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet push nuget.org symbols'
+  inputs:
+    command: 'custom'
+    projects: '$(Build.ArtifactStagingDirectory)/XFeatureTest.$(PackageVersion).symbols.nupkg'
+    custom: 'push'
+    arguments: '-k oy2mqnpl4vg77fbmybia5bgrxoc7ud6eznjpc2lmg3lmwa -s https://api.nuget.org/v3/index.json'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'nuget'
+    publishLocation: 'Container'
