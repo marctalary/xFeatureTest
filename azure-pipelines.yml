@@ -54,10 +54,10 @@ steps:
 - task: CmdLine@2
   displayName: 'dotnet nuget push nuget.org'
   inputs:
-    script: 'dotnet nuget push $(Build.ArtifactStagingDirectory)/XFeatureTest.$(PackageVersion).symbols.nupkg -k $(ApiKey) -s https://api.nuget.org/v3/index.json'
+    script: 'dotnet nuget push $(Build.ArtifactStagingDirectory)/XFeatureTest.$(PackageVersion).nupkg -k $(ApiKey) -s https://api.nuget.org/v3/index.json'
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
 
 - task: CmdLine@2
   displayName: 'dotnet nuget push nuget.org symbols'
   inputs:
-    script: 'dotnet nuget push $(Build.ArtifactStagingDirectory)/XFeatureTest.$(PackageVersion).symbols.snupkg -k $(ApiKey) -s https://api.nuget.org/v3/index.json'
+    script: 'dotnet nuget push $(Build.ArtifactStagingDirectory)/XFeatureTest.$(PackageVersion).snupkg -k $(ApiKey) -s https://api.nuget.org/v3/index.json'
