@@ -21,49 +21,38 @@ steps:
   displayName: 'nuget restore solution'
   inputs:
     restoreSolution: '$(solution)'
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
   inputs:
     command: 'build'
     projects: '$(solution)'
+    arguments: '-c $(buildConfiguration)'
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet test'
   inputs:
     command: 'test'
-    projects: '$(Build.SourcesDirectory)\src\ExampleAspNetProject\ExampleTestProject.csproj'
+    projects: '$(Build.SourcesDirectory)/src/ExampleTestProject/ExampleTestProject.csproj'
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet pack'
   inputs:
     command: 'pack'
-    packagesToPack: '$(Build.SourcesDirectory)\src\XFeatureTest\XFeatureTest.csproj'
-    includesymbols: true
-    includesource: true
-#    versioningScheme: 'byEnvVar'
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet build'
-  inputs:
-    command: 'build'
-    projects: '$(solution)'
-    arguments: '-c $(buildConfiguration) -o (Build.ArtifactStagingDirectory)'
+    packagesToPack: '$(Build.SourcesDirectory)/src/XFeatureTest/XFeatureTest.csproj'
+    configuration: '$(BuildConfiguration)'
+    packDirectory: '$(Build.ArtifactStagingDirectory)'
+    versioningScheme: 'byEnvVar'
+    versionEnvVar: 'PackageVersion'
 
-- task: NuGetAuthenticate@0
+- task: PublishBuildArtifacts@1
   inputs:
-    nuGetServiceConnections: 'Public Nuget Feed'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'nuget'
+    publishLocation: 'Container'
 
-#- task: DotNetCoreCLI@2
-#  displayName: Push Nuget Package
-#  inputs:
-#    command: custom
-#    custom: nuget
-#    arguments: >
-#      push $(Build.ArtifactStagingDirectory)/*.nupkg
-#      -s $(NuGetSourceServerUrl)
-#      -k $(NuGetSourceServerApiKey)
-
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet push nuget.org'
+- task: CmdLine@2
+  displayName: 'dotnet nuget push nuget.org'
   inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
-#    nuGetFeedType: 'external'
-#    publishFeedCredentials: 'Public Nuget Feed'
+    script: 'dotnet nuget push $(Build.ArtifactStagingDirectory)/XFeatureTest.$(PackageVersion).nupkg -k $(ApiKey) -s https://api.nuget.org/v3/index.json'
+    workingDirectory: '$(Build.ArtifactStagingDirectory)'
