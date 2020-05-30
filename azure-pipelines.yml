@@ -55,7 +55,7 @@ steps:
   displayName: 'dotnet push nuget.org'
   inputs:
     command: 'custom'
-    projects: '$(Build.ArtifactStagingDirectory)/XFeatureTest.$(PackageVersion).nupkg'
+    projects: '$(Build.ArtifactStagingDirectory)\**\XFeatureTest.$(PackageVersion).nupkg'
     custom: 'push'
     arguments: '-k oy2mqnpl4vg77fbmybia5bgrxoc7ud6eznjpc2lmg3lmwa -s https://api.nuget.org/v3/index.json'
 
@@ -63,7 +63,7 @@ steps:
   displayName: 'dotnet push nuget.org symbols'
   inputs:
     command: 'custom'
-    projects: '$(Build.ArtifactStagingDirectory)/XFeatureTest.$(PackageVersion).symbols.nupkg'
+    projects: '$(Build.ArtifactStagingDirectory)\**\XFeatureTest.$(PackageVersion).symbols.nupkg'
     custom: 'push'
     arguments: '-k oy2mqnpl4vg77fbmybia5bgrxoc7ud6eznjpc2lmg3lmwa -s https://api.nuget.org/v3/index.json'
 
