@@ -60,12 +60,14 @@ steps:
 #    arguments: 'push -k oy2mqnpl4vg77fbmybia5bgrxoc7ud6eznjpc2lmg3lmwa -s https://api.nuget.org/v3/index.json'
 
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet nuget push nuget.org'
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/XFeatureTest.$(PackageVersion).nupkg'
     arguments: '-k oy2mqnpl4vg77fbmybia5bgrxoc7ud6eznjpc2lmg3lmwa -s https://api.nuget.org/v3/index.json'
 
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet nuget push nuget.org symbols'
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/XFeatureTest.$(PackageVersion).snupkg'
