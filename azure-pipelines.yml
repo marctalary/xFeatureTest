@@ -22,18 +22,18 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet build'
-  inputs:
-    command: 'build'
-    projects: '$(solution)'
-    arguments: '-c $(buildConfiguration)'
+#- task: DotNetCoreCLI@2
+#  displayName: 'dotnet build'
+#  inputs:
+#    command: 'build'
+#    projects: '$(solution)'
+#    arguments: '-c $(buildConfiguration)'
 
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet test'
-  inputs:
-    command: 'test'
-    projects: '$(Build.SourcesDirectory)/src/ExampleTestProject/ExampleTestProject.csproj'
+#- task: DotNetCoreCLI@2
+#  displayName: 'dotnet test'
+#  inputs:
+#    command: 'test'
+#    projects: '$(Build.SourcesDirectory)/src/ExampleTestProject/ExampleTestProject.csproj'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet pack'
@@ -54,11 +54,10 @@ steps:
 - task: CmdLine@2
   displayName: 'dotnet nuget push nuget.org'
   inputs:
-    script: 'dotnet nuget push XFeatureTest.$(PackageVersion).symbols.nupkg -k $(ApiKey) -s https://api.nuget.org/v3/index.json'
+    script: 'dotnet nuget push $(Build.ArtifactStagingDirectory)/XFeatureTest.$(PackageVersion).symbols.nupkg -k $(ApiKey) -s https://api.nuget.org/v3/index.json'
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
 
 - task: CmdLine@2
   displayName: 'dotnet nuget push nuget.org symbols'
   inputs:
-    script: 'dotnet nuget push XFeatureTest.$(PackageVersion).symbols.snupkg -k $(ApiKey) -s https://api.nuget.org/v3/index.json'
-    workingDirectory: '$(Build.ArtifactStagingDirectory)'
+    script: 'dotnet nuget push $(Build.ArtifactStagingDirectory)/XFeatureTest.$(PackageVersion).symbols.snupkg -k $(ApiKey) -s https://api.nuget.org/v3/index.json'
