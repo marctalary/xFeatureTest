@@ -9,7 +9,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{C0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleTestProject", "..\ExampleTestProject\ExampleTestProject.csproj", "{E1E6906F-7048-435B-8F57-74C71897077D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleAspNetProject", "..\ExampleAspNetProject\ExampleAspNetProject.csproj", "{8E1C9841-E96B-457E-B082-66FDE92EF9E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleAspNetProject", "..\ExampleAspNetProject\ExampleAspNetProject.csproj", "{8E1C9841-E96B-457E-B082-66FDE92EF9E0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ABCD088E-3C52-4320-8297-4FD125185CBE}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\azure-pipelines.yml = ..\..\azure-pipelines.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
